@@ -3,46 +3,446 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English for Careers: Tourism 1</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/components.css">
+    <title>Tourism 1 - Student Learning Portal</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Top Banner -->
     <header>
         <div class="logo-area">
             <h1>English for Careers: Tourism 1</h1>
             <span>Interactive Student Learning Portal</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="active" data-page="home">Home</a></li>
-            <li><a href="#" data-page="vocabulary">Vocabulary</a></li>
-            <li><a href="#" data-page="tests">Unit Tests</a></li>
-            <li><a href="#" data-page="quizzes">Quizzes</a></li>
+            <li><a onclick="switchPage('home', event)" class="active" id="nav-home">Home</a></li>
+            <li><a onclick="switchPage('vocabulary-page', event)" id="nav-vocab">Vocabulary</a></li>
+            <li><a onclick="switchPage('unit-tests-page', event)" id="nav-tests">Unit Tests</a></li>
+            <li><a onclick="switchPage('quizzes-page', event)" id="nav-quizzes">Quizzes</a></li>
         </ul>
     </header>
 
     <div class="main-wrapper">
-        <button class="sidebar-toggle-btn" id="sidebar-expand-btn" title="Open Menu">
-            <div class="three-lines"><span></span><span></span><span></span></div>
+        <!-- Floating Three-Line Expand Button on Left Wall -->
+        <button class="sidebar-toggle-btn" id="sidebar-expand-btn" onclick="toggleSidebar()" title="Open Menu">
+            <div class="three-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </button>
 
+        <!-- Left-Hand Collapsible Sidebar Containing All 12 Units -->
         <sidebar id="left-sidebar">
             <div class="sidebar-header">
                 <span>Units</span>
-                <button class="collapse-arrow-btn" id="sidebar-collapse-btn">&#8592;</button>
+                <button class="collapse-arrow-btn" onclick="toggleSidebar()" title="Collapse Sidebar">&#8592;</button>
             </div>
-            <ul class="unit-list" id="dynamic-unit-list">
-                <!-- Populated dynamically via data.js -->
+            <ul class="unit-list">
+                <!-- Unit 1 -->
+                <li class="unit-item active">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 1: What is tourism?</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit1', event)" class="active">Take Off & Jobs</a></li>
+                        <li><a href="#" onclick="showSection('unit1', event)">Language Spot: Skills</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 2 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 2: World destinations</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit2', event)">Tourist Attractions</a></li>
+                        <li><a href="#" onclick="showSection('unit2', event)">Describing Features</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 3 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 3: Tour operators</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit3', event)">Package Holidays</a></li>
+                        <li><a href="#" onclick="showSection('unit3', event)">Itinerary Design</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 4 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 4: Tourist motivations</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit4', event)">Why People Travel</a></li>
+                        <li><a href="#" onclick="showSection('unit4', event)">Old & New Tourism</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 5 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 5: Travel agencies</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit5', event)">Identifying Needs</a></li>
+                        <li><a href="#" onclick="showSection('unit5', event)">The Sales Process</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 6 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 6: Transport in tourism</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit6', event)">Transport Systems</a></li>
+                        <li><a href="#" onclick="showSection('unit6', event)">Timetables & Schedules</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 7 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 7: Accommodation</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit7', event)">Hotel Facilities</a></li>
+                        <li><a href="#" onclick="showSection('unit7', event)">Telephone Bookings</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 8 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 8: Marketing & promotion</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit8', event)">What is Marketing?</a></li>
+                        <li><a href="#" onclick="showSection('unit8', event)">Promotional Campaigns</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 9 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 9: The airline industry</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit9', event)">Airport Operations</a></li>
+                        <li><a href="#" onclick="showSection('unit9', event)">Flying & Carbon Offsets</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 10 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 10: Holidays with a difference</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit10', event)">Niche Tourism</a></li>
+                        <li><a href="#" onclick="showSection('unit10', event)">Cultural Tips</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 11 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 11: Reservations & sales</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit11', event)">Booking Conditions</a></li>
+                        <li><a href="#" onclick="showSection('unit11', event)">GDS Systems</a></li>
+                    </ul>
+                </li>
+                <!-- Unit 12 -->
+                <li class="unit-item">
+                    <div class="unit-title" onclick="toggleUnit(this)">
+                        <span>Unit 12: Airport departures</span><span>▼</span>
+                    </div>
+                    <ul class="section-sublist">
+                        <li><a href="#" onclick="showSection('unit12', event)">Terminal Services</a></li>
+                        <li><a href="#" onclick="showSection('unit12', event)">Security & Boarding</a></li>
+                    </ul>
+                </li>
             </ul>
         </sidebar>
 
-        <main id="main-content-area">
-            <!-- Dynamic Page Sections Injected Here -->
+        <!-- Main Content Area with Pages -->
+        <main>
+            <!-- HOME PAGE -->
+            <div id="home-page" class="page-section active-page">
+                <!-- Unit 1 Content -->
+                <section id="unit1" class="content-section active-content">
+                    <h2>Unit 1: What is Tourism?</h2>
+                    <p>Tourism is the temporary short-term movement of people to destinations outside their normal home and workplace.</p>
+                    <table class="vocab-table">
+                        <tr><th>Job Title</th><th>Core Responsibility</th></tr>
+                        <tr><td>Tour Guide</td><td>Escorting travelers and explaining local history.</td></tr>
+                        <tr><td>Hotel Receptionist</td><td>Checking guests in and managing room reservations.</td></tr>
+                    </table>
+                    <div class="note-box note-grammar">
+                        <h4>Grammar Tip</h4>
+                        <p>Use <strong>can + infinitive</strong> (e.g., *I can speak English*) to express professional abilities.</p>
+                    </div>
+                </section>
+
+                <!-- Unit 2 Content -->
+                <section id="unit2" class="content-section">
+                    <h2>Unit 2: World Destinations</h2>
+                    <p>Exploring famous international tourist destinations, geographical features, and local customs.</p>
+                    <table class="vocab-table">
+                        <tr><th>Feature</th><th>Description</th></tr>
+                        <tr><td>Coastal Resort</td><td>A place by the sea providing lodging and entertainment.</td></tr>
+                        <tr><td>Landmark</td><td>An object or feature of a landscape or town that is easily seen and recognized.</td></tr>
+                    </table>
+                    <div class="note-box note-reminder">
+                        <h4>Vocabulary Note</h4>
+                        <p>Learn adjectives to describe locations accurately, such as *picturesque*, *bustling*, and *remote*.</p>
+                    </div>
+                </section>
+
+                <!-- Unit 3 Content -->
+                <section id="unit3" class="content-section">
+                    <h2>Unit 3: Tour Operators</h2>
+                    <p>Understanding how tour operators combine travel items into package holidays for customers.</p>
+                    <table class="vocab-table">
+                        <tr><th>Term</th><th>Definition</th></tr>
+                        <tr><td>Package Holiday</td><td>A holiday that includes transport, accommodation, and tours arranged by an agency.</td></tr>
+                        <tr><td>Itinerary</td><td>A planned route or journey schedule.</td></tr>
+                    </table>
+                    <div class="note-box note-takeaway">
+                        <h4>Key Takeaway</h4>
+                        <p>Tour operators manage large blocks of tickets and hotel rooms to lower costs for travelers.</p>
+                    </div>
+                </section>
+
+                <!-- Unit 4 Content -->
+                <section id="unit4" class="content-section">
+                    <h2>Unit 4: Tourist Motivations</h2>
+                    <p>Examining why people travel, shifting trends, and the differences between traditional and modern tourism.</p>
+                    <table class="vocab-table">
+                        <tr><th>Motivation</th><th>Description</th></tr>
+                        <tr><td>Leisure & Recreation</td><td>Traveling to relax, unwind, and escape everyday stress.</td></tr>
+                        <tr><td>Cultural Discovery</td><td>Seeking out heritage, authentic food, and local traditions.</td></tr>
+                    </table>
+                    <div class="note-box note-grammar">
+                        <h4>Language Spot</h4>
+                        <p>Use comparative adjectives when discussing changing trends in visitor choices (e.g., *more popular*, *less crowded*).</p>
+                    </div>
+                </section>
+
+                <!-- Unit 5 Content -->
+                <section id="unit5" class="content-section">
+                    <h2>Unit 5: Travel Agencies</h2>
+                    <p>Focusing on retail travel staff, identifying client needs, and matching customers with ideal holiday products.</p>
+                    <table class="vocab-table">
+                        <tr><th>Skill</th><th>Action</th></tr>
+                        <tr><td>Probing</td><td>Asking open-ended questions to discover a client's exact holiday budget and preferences.</td></tr>
+                        <tr><td>Recommending</td><td>Suggesting specific destinations and handling reservations.</td></tr>
+                    </table>
+                    <div class="note-box note-reminder">
+                        <h4>Sales Tip</h4>
+                        <p>Always listen carefully to customer requirements before presenting a product proposal.</p>
+                    </div>
+                </section>
+
+                <!-- Unit 6 Content -->
+                <section id="unit6" class="content-section">
+                    <h2>Unit 6: Transport in Tourism</h2>
+                    <p>Covering global transit networks, aviation, rail systems, cruise ships, and timetable management.</p>
+                    <table class="vocab-table">
+                        <tr><th>Transport Type</th><th>Key Term</th></tr>
+                        <tr><td>Aviation</td><td>Check-in desk, boarding pass, luggage allowance.</td></tr>
+                        <tr><td>Maritime</td><td>Cabin, deck, cruise itinerary.</td></tr>
+                    </table>
+                    <div class="note-box note-grammar">
+                        <h4>Grammar Tip</h4>
+                        <p>Use the present simple tense when talking about fixed transport timetables and schedules (e.g., *The train departs at 08:30*).</p>
+                    </div>
+                </section>
+
+                <!-- Unit 7 Content -->
+                <section id="unit7" class="content-section">
+                    <h2>Unit 7: Accommodation</h2>
+                    <p>Hotel facilities, room categories, staffing structures, and managing telephone bookings.</p>
+                    <table class="vocab-table">
+                        <tr><th>Hotel Department</th><th>Staff Role</th></tr>
+                        <tr><td>Front Office</td><td>Receptionist, concierge, reservation clerk.</td></tr>
+                        <tr><td>Housekeeping</td><td>Room attendant, laundry supervisor.</td></tr>
+                    </table>
+                    <div class="note-box note-takeaway">
+                        <h4>Key Takeaway</h4>
+                        <p>Polite phone etiquette and clear articulation are vital when recording telephone bookings.</p>
+                    </div>
+                </section>
+
+                <!-- Unit 8 Content -->
+                <section id="unit8" class="content-section">
+                    <h2>Unit 8: Marketing and Promotion</h2>
+                    <p>Learning how tourism destinations and products are marketed using promotional campaigns and advertising strategies.</p>
+                    <table class="vocab-table">
+                        <tr><th>Marketing Tool</th><th>Purpose</th></tr>
+                        <tr><td>Brochure</td><td>Printed or digital booklet detailing holiday packages and prices.</td></tr>
+                        <tr><td>SWOT Analysis</td><td>Evaluating Strengths, Weaknesses, Opportunities, and Threats.</td></tr>
+                    </table>
+                    <div class="note-box note-reminder">
+                        <h4>Vocabulary Reminder</h4>
+                        <p>Master superlative adjectives for advertising language (e.g., *the most exciting destination*, *the best value*).</p>
+                    </div>
+                </section>
+
+                <!-- Unit 9 Content -->
+                <section id="unit9" class="content-section">
+                    <h2>Unit 9: The Airline Industry</h2>
+                    <p>Investigating commercial aviation, airport operations, customer care, and environmental considerations.</p>
+                    <table class="vocab-table">
+                        <tr><th>Concept</th><th>Definition</th></tr>
+                        <tr><td>Carbon Offset</td><td>A mechanism enabling travelers to compensate for greenhouse gas emissions.</td></tr>
+                        <tr><td>Overbooking</td><td>Selling more tickets than available seats to offset passenger no-shows.</td></tr>
+                    </table>
+                    <div class="note-box note-grammar">
+                        <h4>Language Spot</h4>
+                        <p>Use polite indirect questions when dealing with flight status inquiries (e.g., *Could you tell me when flight BA123 boards?*).</p>
+                    </div>
+                </section>
+
+                <!-- Unit 10 Content -->
+                <section id="unit10" class="content-section">
+                    <h2>Unit 10: Holidays with a Difference</h2>
+                    <p>Exploring alternative tourism sectors, such as adventure travel, ecotourism, and cultural expeditions to remote regions.</p>
+                    <table class="vocab-table">
+                        <tr><th>Niche Type</th><th>Focus Area</th></tr>
+                        <tr><td>Ecotourism</td><td>Responsible travel to natural areas conserving the environment and improving local well-being.</td></tr>
+                        <tr><td>Adventure Travel</td><td>Exploration involving risk, physical exertion, and outdoor skill.</td></tr>
+                    </table>
+                    <div class="note-box note-takeaway">
+                        <h4>Key Takeaway</h4>
+                        <p>Cultural sensitivity and environmental respect are core requirements for specialized niche tourism.</p>
+                    </div>
+                </section>
+
+                <!-- Unit 11 Content -->
+                <section id="unit11" class="content-section">
+                    <h2>Unit 11: Reservations and Sales</h2>
+                    <p>Managing computerized booking systems, understanding booking conditions, and processing payments.</p>
+                    <table class="vocab-table">
+                        <tr><th>System/Term</th><th>Function</th></tr>
+                        <tr><td>GDS (Global Distribution System)</td><td>Computerized network used for booking airline seats, hotel rooms, and car rentals.</td></tr>
+                        <tr><td>Cancellation Policy</td><td>Rules regarding refunds when a customer cancels a booking.</td></tr>
+                    </table>
+                    <div class="note-box note-reminder">
+                        <h4>Customer Care Tip</h4>
+                        <p>Always repeat payment confirmation numbers back to the client clearly to prevent errors.</p>
+                    </div>
+                </section>
+
+                <!-- Unit 12 Content -->
+                <section id="unit12" class="content-section">
+                    <h2>Unit 12: Airport Departures</h2>
+                    <p>Managing the final departure process, terminal services, customs, security clearances, and boarding procedures.</p>
+                    <table class="vocab-table">
+                        <tr><th>Terminal Zone</th><th>Activity</th></tr>
+                        <tr><td>Security Checkpoint</td><td>Scanning carry-on luggage and screening passengers.</td></tr>
+                        <tr><td>Boarding Gate</td><td>Final document check before entering the aircraft.</td></tr>
+                    </table>
+                    <div class="note-box note-grammar">
+                        <h4>Language Spot</h4>
+                        <p>Use clear imperative instructions for passenger safety control (e.g., *Please place electronic devices in the tray*).</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- VOCABULARY PAGE -->
+            <div id="vocabulary-page" class="page-section">
+                <h2>Course Vocabulary Glossary</h2>
+                <p>Review key terms across all 12 units of Tourism 1.</p>
+                <table class="vocab-table">
+                    <tr><th>Term</th><th>Unit</th><th>Definition / Description</th></tr>
+                    <tr><td>Tourism</td><td>Unit 1</td><td>Temporary short-term movement of people to destinations outside their home.</td></tr>
+                    <tr><td>Coastal Resort</td><td>Unit 2</td><td>A place by the sea providing lodging and entertainment.</td></tr>
+                    <tr><td>Package Holiday</td><td>Unit 3</td><td>Holiday including transport, accommodation, and tours arranged together.</td></tr>
+                    <tr><td>Ecotourism</td><td>Unit 10</td><td>Responsible travel to natural areas conserving the environment.</td></tr>
+                    <tr><td>GDS</td><td>Unit 11</td><td>Computerized network used for booking travel products.</td></tr>
+                </table>
+            </div>
+
+            <!-- UNIT TESTS PAGE -->
+            <div id="unit-tests-page" class="page-section">
+                <h2>Unit Tests (Sample Assessments)</h2>
+                <p>Click on any unit test below to view sample assessment questions and test tasks.</p>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Unit 1 Test: What is Tourism?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <h3>Part A: Fill in the Blanks</h3>
+                        <p>1. Tourism is the temporary short-term movement of people to __________ outside their normal home.</p>
+                        <h3>Part B: Short Answer</h3>
+                        <p>Name two primary job roles found in tourism and explain their core responsibilities.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Unit 2 Test: World Destinations</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <h3>Part A: Vocabulary Check</h3>
+                        <p>Describe the difference between a coastal resort and a historical landmark in your own words.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Units 3 - 12 Sample Tests</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <p>Standardized diagnostic and summative tests available for tour operators, travel agencies, transport, accommodation, and airline operations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUIZZES PAGE -->
+            <div id="quizzes-page" class="page-section">
+                <h2>Interactive Quizzes</h2>
+                <p>Test your knowledge with these interactive self-check quizzes for each unit.</p>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Unit 1 Interactive Quiz</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="quiz-question">1. What best defines tourism?</div>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="wrong"> Moving permanently to a new country.</label>
+                            <label><input type="radio" name="q1" value="right"> Short-term movement outside your normal home and workplace.</label>
+                            <label><input type="radio" name="q1" value="wrong"> Commuting daily to an office job.</label>
+                        </div>
+                        <button class="check-btn" onclick="checkQuiz(this, 'right')">Check Answer</button>
+                        <div class="feedback"></div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Unit 2 Interactive Quiz</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-body">
+                        <div class="quiz-question">1. Which term describes a popular coastal holiday spot?</div>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="right"> Coastal Resort</label>
+                            <label><input type="radio" name="q2" value="wrong"> Industrial Park</label>
+                            <label><input type="radio" name="q2" value="wrong"> Financial District</label>
+                        </div>
+                        <button class="check-btn" onclick="checkQuiz(this, 'right')">Check Answer</button>
+                        <div class="feedback"></div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
-    <script src="js/data.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/quizzes.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
