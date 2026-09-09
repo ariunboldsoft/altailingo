@@ -22,6 +22,13 @@ header {
     z-index: 1000;
 }
 
+.logo-area h1 { font-size: 1.4rem; }
+.logo-area span { font-size: 0.85rem; opacity: 0.8; display: block; }
+
+.nav-links { list-style: none; display: flex; gap: 1.5rem; }
+.nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 0.5rem 0.8rem; border-radius: 4px; cursor: pointer; }
+.nav-links a:hover, .nav-links a.active { background-color: var(--secondary-color); }
+
 .main-wrapper { display: flex; height: calc(100vh - var(--header-height)); width: 100vw; position: relative; }
 
 sidebar {
@@ -38,7 +45,6 @@ sidebar {
 
 sidebar.collapsed { margin-left: calc(-1 * var(--sidebar-width)); }
 
-/* Fixed toggle button moved cleanly up to avoid overlapping headings */
 .sidebar-toggle-btn {
     position: fixed;
     left: 20px;
@@ -60,4 +66,57 @@ sidebar.collapsed { margin-left: calc(-1 * var(--sidebar-width)); }
 .three-lines { display: flex; flex-direction: column; gap: 4px; width: 18px; }
 .three-lines span { display: block; height: 3px; background-color: white; border-radius: 2px; }
 
+.sidebar-header {
+    padding: 1rem;
+    background-color: #e9ecef;
+    font-weight: bold;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapse-arrow-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.unit-list { list-style: none; }
+.unit-item { border-bottom: 1px solid #f1f3f5; }
+.unit-title {
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    color: #212529;
+    cursor: pointer;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+}
+.unit-title:hover { background-color: #f1f3f5; }
+
 main { flex-grow: 1; padding: 2.5rem 3rem; overflow-y: auto; background-color: #ffffff; }
+
+h2 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem; border-bottom: 2px solid #e9ecef; padding-bottom: 0.5rem; }
+p { line-height: 1.6; margin-bottom: 1rem; color: #444; }
+
+.vocab-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+.vocab-table th, .vocab-table td { border: 1px solid #dee2e6; padding: 0.75rem; text-align: left; }
+.vocab-table th { background-color: #e9ecef; }
+
+.note-box { padding: 1.2rem; border-radius: 6px; margin: 1.5rem 0; border-left: 5px solid; }
+.note-grammar { background-color: #e8f4f8; border-color: #1e6091; color: #0b3d91; }
+
+.accordion-item { border: 1px solid #dee2e6; border-radius: 6px; margin-bottom: 1rem; background: #fff; }
+.accordion-header { padding: 1rem; background-color: #f1f3f5; cursor: pointer; font-weight: 600; color: var(--primary-color); }
+.accordion-body { padding: 1.5rem; border-top: 1px solid #dee2e6; }
+
+.check-btn { background-color: var(--accent-color); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-top: 0.5rem; }
