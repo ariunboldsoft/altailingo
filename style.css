@@ -1,0 +1,412 @@
+:root {
+    --primary-color: #0b3d91;
+    --secondary-color: #1e6091;
+    --accent-color: #1a936f;
+    --bg-color: #f8f9fa;
+    --text-color: #333333;
+    --sidebar-width: 300px;
+    --header-height: 70px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Top Banner Header */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.logo-area h1 {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+.logo-area span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    display: block;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background-color: var(--secondary-color);
+}
+
+/* Main Wrapper Container */
+.main-wrapper {
+    display: flex;
+    height: calc(100vh - var(--header-height));
+    width: 100vw;
+    position: relative;
+}
+
+/* Left-Hand Collapsible Sidebar */
+sidebar {
+    width: var(--sidebar-width);
+    background-color: #ffffff;
+    border-right: 1px solid #dee2e6;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    z-index: 100;
+    margin-left: 0;
+}
+
+sidebar.collapsed {
+    margin-left: calc(-1 * var(--sidebar-width));
+}
+
+/* Floating Three-Line Expand Button on Left Wall */
+.sidebar-toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 82px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 1005;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.sidebar-toggle-btn:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+.three-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 18px;
+}
+
+.three-lines span {
+    display: block;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.sidebar-header {
+    padding: 1rem;
+    background-color: #e9ecef;
+    font-weight: bold;
+    color: #495057;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapse-arrow-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.collapse-arrow-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.collapse-arrow-btn:active {
+    transform: scale(0.95);
+}
+
+.unit-list {
+    list-style: none;
+}
+
+.unit-item {
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.unit-title {
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    color: #212529;
+    cursor: pointer;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.unit-title:hover {
+    background-color: #f1f3f5;
+}
+
+.section-sublist {
+    list-style: none;
+    background-color: #fdfdfe;
+    display: none;
+    padding-left: 1rem;
+    border-top: 1px solid #f1f3f5;
+}
+
+.unit-item.active .section-sublist {
+    display: block;
+}
+
+.section-sublist li a {
+    display: block;
+    padding: 0.5rem 0.8rem;
+    color: #495057;
+    text-decoration: none;
+    font-size: 0.85rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.section-sublist li a:hover, .section-sublist li a.active {
+    color: var(--primary-color);
+    background-color: #eef2f7;
+    border-left-color: var(--primary-color);
+}
+
+/* Main Content Area */
+main {
+    flex-grow: 1;
+    padding: 2.5rem 3rem;
+    overflow-y: auto;
+    background-color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.page-section {
+    display: none;
+}
+
+.page-section.active-page {
+    display: block;
+}
+
+.content-section {
+    margin-bottom: 3rem;
+    display: none;
+}
+
+.content-section.active-content {
+    display: block;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    color: var(--secondary-color);
+    margin: 1.5rem 0 0.8rem 0;
+    font-size: 1.3rem;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #444;
+    font-size: 1.05rem;
+}
+
+/* Vocabulary Table */
+.vocab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.vocab-table th, .vocab-table td {
+    border: 1px solid #dee2e6;
+    padding: 0.75rem;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.vocab-table th {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+/* Color-Coded Footer Notes */
+.note-box {
+    padding: 1.2rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    border-left: 5px solid;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.note-grammar {
+    background-color: #e8f4f8;
+    border-color: #1e6091;
+    color: #0b3d91;
+}
+
+.note-reminder {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    color: #856404;
+}
+
+.note-takeaway {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.note-box h4 {
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.note-box p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: inherit;
+}
+
+/* Collapsible Work Area Items */
+.accordion-item {
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    background: #fff;
+}
+
+.accordion-header {
+    padding: 1rem;
+    background-color: #f1f3f5;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header:hover {
+    background-color: #e9ecef;
+}
+
+.accordion-body {
+    padding: 1.5rem;
+    display: none;
+    border-top: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+.accordion-item.open .accordion-body {
+    display: block;
+}
+
+.quiz-question {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.quiz-options label {
+    display: block;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.check-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.feedback {
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-wrapper {
+        flex-direction: column;
+    }
+    sidebar {
+        width: 100%;
+        height: 180px;
+        margin-left: 0;
+    }
+    sidebar.collapsed {
+        margin-left: 0;
+        transform: translateY(-180px);
+    }
+    .sidebar-toggle-btn {
+        top: 78px;
+        left: 15px;
+    }
+}
