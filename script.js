@@ -1,5 +1,5 @@
 // Toggle collapsible sidebar on the left wall to maximize main work area
-function toggleSidebar() {
+window.toggleSidebar = function() {
     const sidebar = document.getElementById('left-sidebar');
     const expandBtn = document.getElementById('sidebar-expand-btn');
     
@@ -10,10 +10,10 @@ function toggleSidebar() {
     } else {
         expandBtn.style.display = 'none';
     }
-}
+};
 
 // Switch top banner pages
-function switchPage(pageId, event) {
+window.switchPage = function(pageId, event) {
     event.preventDefault();
     
     document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active-page'));
@@ -21,16 +21,16 @@ function switchPage(pageId, event) {
     
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
     event.target.classList.add('active');
-}
+};
 
 // Toggle collapsible sublists in the sidebar
-function toggleUnit(element) {
+window.toggleUnit = function(element) {
     const parentItem = element.parentElement;
     parentItem.classList.toggle('active');
-}
+};
 
 // Switch main view content when clicking unit sub-links and auto-switch to home page
-function showSection(sectionId, event) {
+window.showSection = function(sectionId, event) {
     event.preventDefault();
     
     document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active-page'));
@@ -49,16 +49,16 @@ function showSection(sectionId, event) {
     const subLinks = document.querySelectorAll('.section-sublist a');
     subLinks.forEach(link => link.classList.remove('active'));
     event.target.classList.add('active');
-}
+};
 
 // Toggle accordions for unit tests and quizzes
-function toggleAccordion(header) {
+window.toggleAccordion = function(header) {
     const item = header.parentElement;
     item.classList.toggle('open');
-}
+};
 
 // Check interactive quiz answer
-function checkQuiz(btn, expectedValue) {
+window.checkQuiz = function(btn, expectedValue) {
     const body = btn.parentElement;
     const selected = body.querySelector('input[type="radio"]:checked');
     const feedback = body.querySelector('.feedback');
@@ -76,4 +76,4 @@ function checkQuiz(btn, expectedValue) {
         feedback.style.color = '#721c24';
         feedback.textContent = 'Incorrect. Try again!';
     }
-}
+};
