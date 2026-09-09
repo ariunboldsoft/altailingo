@@ -76,4 +76,27 @@ window.checkQuiz = function(btn, expectedValue) {
         feedback.style.color = '#721c24';
         feedback.textContent = 'Incorrect. Try again!';
     }
+    window.loadExtract = function(unitNumber) {
+    const containerId = `extract-unit${unitNumber}`;
+    const targetContainer = document.getElementById(containerId);
+    
+    // Skip if already loaded to save bandwidth
+    if (targetContainer && targetContainer.dataset.loaded === "true") return;
+
+    fetch(`extracts/unit${unitNumber}.html`)
+        .then(response => {
+            if (!response.ok) throw new Error("Extract not found");
+            return response.text();
+        })
+        .then(htmlContent => {
+            if (targetContainer) {
+                targetContainer.innerHTML = htmlContent;
+                targetContainer.dataset.loaded = "true";
+            }
+        })
+        .catch(error => {
+            if (targetContainer) {
+                targetContainer.innerHTML = `<p style="color: #721c24;">Extract content coming soon.</p>`;
+            }
+        });
 };
