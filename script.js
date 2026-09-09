@@ -2,25 +2,38 @@
 window.toggleSidebar = function() {
     const sidebar = document.getElementById('left-sidebar');
     const expandBtn = document.getElementById('sidebar-expand-btn');
+    const wrapper = document.querySelector('.main-wrapper');
     
-    sidebar.classList.toggle('collapsed');
+    if (wrapper) wrapper.classList.toggle('sidebar-collapsed');
+    if (sidebar) sidebar.classList.toggle('collapsed');
     
-    if (sidebar.classList.contains('collapsed')) {
-        expandBtn.style.display = 'flex';
+    if (sidebar && sidebar.classList.contains('collapsed')) {
+        if (expandBtn) expandBtn.style.display = 'flex';
     } else {
-        expandBtn.style.display = 'none';
+        if (expandBtn) expandBtn.style.display = 'none';
     }
 };
 
-// Switch top banner pages
+// Switch top banner pages (Vocabulary, Unit Tests, Quizzes)
 window.switchPage = function(pageId, event) {
-    event.preventDefault();
+    if (event) event.preventDefault();
     
-    document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active-page'));
-    document.getElementById(pageId).classList.add('active-page');
+    // Hide all page sections and unit content sections
+    document.querySelectorAll('.page-section, .content-section').forEach(p => {
+        p.classList.remove('active-page', 'active-content');
+    });
     
+    // Show target page
+    const target = document.getElementById(pageId);
+    if (target) {
+        target.classList.add('active-page');
+    }
+    
+    // Update active state on top navigation
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    event.target.classList.add('active');
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
 };
 
 // Toggle collapsible sublists in the sidebar
@@ -29,26 +42,29 @@ window.toggleUnit = function(element) {
     parentItem.classList.toggle('active');
 };
 
-// Switch main view content when clicking unit sub-links and auto-switch to home page
+// Switch main view content when clicking unit sub-links
 window.showSection = function(sectionId, event) {
-    event.preventDefault();
+    if (event) event.preventDefault();
     
-    document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active-page'));
-    document.getElementById('home-page').classList.add('active-page');
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    document.getElementById('nav-home').classList.add('active');
+    // Hide all page sections and content sections
+    document.querySelectorAll('.page-section, .content-section').forEach(p => {
+        p.classList.remove('active-page', 'active-content');
+    });
     
-    const sections = document.querySelectorAll('.content-section');
-    sections.forEach(sec => sec.classList.remove('active-content'));
-    
+    // Show target unit section
     const target = document.getElementById(sectionId);
     if (target) {
         target.classList.add('active-content');
     }
     
-    const subLinks = document.querySelectorAll('.section-sublist a');
-    subLinks.forEach(link => link.classList.remove('active'));
-    event.target.classList.add('active');
+    // Clear top nav active states when viewing units
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    
+    // Update active sub-link in sidebar
+    document.querySelectorAll('.section-sublist a').forEach(link => link.classList.remove('active'));
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
 };
 
 // Toggle accordions for unit tests and quizzes
@@ -76,11 +92,13 @@ window.checkQuiz = function(btn, expectedValue) {
         feedback.style.color = '#721c24';
         feedback.textContent = 'Incorrect. Try again!';
     }
-    window.loadExtract = function(unitNumber) {
+};
+
+// Load Unit Extract via Fetch (Properly isolated in the global scope)
+window.loadExtract = function(unitNumber) {
     const containerId = `extract-unit${unitNumber}`;
     const targetContainer = document.getElementById(containerId);
     
-    // Skip if already loaded to save bandwidth
     if (targetContainer && targetContainer.dataset.loaded === "true") return;
 
     fetch(`extracts/unit${unitNumber}.html`)
@@ -96,7 +114,12 @@ window.checkQuiz = function(btn, expectedValue) {
         })
         .catch(error => {
             if (targetContainer) {
-                targetContainer.innerHTML = `<p style="color: #721c24;">Extract content coming soon.</p>`;
+                targetContainer.innerHTML = `<p style="color: #721c24; padding: 20px;">Extract content coming soon or make sure your local server is running.</p>`;
             }
         });
 };
+
+// Automatically load Unit 1 extract when the page opens
+window.addEventListener('DOMContentLoaded', () => {
+    loadExtract(1);
+});
