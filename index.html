@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Careers: Tourism 1</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <h1>English for Careers: Tourism 1</h1>
+            <span>Interactive Student Learning Portal</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active" data-page="home">Home</a></li>
+            <li><a href="#" data-page="vocabulary">Vocabulary</a></li>
+            <li><a href="#" data-page="tests">Unit Tests</a></li>
+            <li><a href="#" data-page="quizzes">Quizzes</a></li>
+        </ul>
+    </header>
+
+    <div class="main-wrapper">
+        <button class="sidebar-toggle-btn" id="sidebar-expand-btn" title="Open Menu">
+            <div class="three-lines"><span></span><span></span><span></span></div>
+        </button>
+
+        <sidebar id="left-sidebar">
+            <div class="sidebar-header">
+                <span>Units</span>
+                <button class="collapse-arrow-btn" id="sidebar-collapse-btn">&#8592;</button>
+            </div>
+            <ul class="unit-list" id="dynamic-unit-list">
+                <!-- Populated dynamically via data.js -->
+            </ul>
+        </sidebar>
+
+        <main id="main-content-area">
+            <!-- Dynamic Page Sections Injected Here -->
+        </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/quizzes.js"></script>
+</body>
+</html>
